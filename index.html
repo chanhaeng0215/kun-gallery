@@ -27,4 +27,61 @@
 
   <h1>Kun Photo Gallery</h1>
 
-  <div class="
+  <!-- 실제로 GitHub에 올라간 12개 파일 이름에 딱 맞춰서 넣었습니다 -->
+  <div class="gallery" id="gallery">
+    <img src="20130707_181126.jpg" alt="photo1">
+    <img src="20130715_185120.jpg" alt="photo2">
+    <img src="20130804_115528.jpg" alt="photo3">
+    <img src="20180703_175138.jpg" alt="photo4">
+    <img src="20180703_184646.jpg" alt="photo5">
+    <img src="20180703_184700.jpg" alt="photo6">
+    <img src="Castle Printed by Kun.jpg" alt="photo7">
+    <img src="IMG-7688.jpg" alt="photo8">
+    <img src="IMG-8232.JPEG" alt="photo9">
+    <img src="KakaoTalk_20240615_222831256.jpg" alt="photo10">
+    <img src="KakaoTalk_20250701_232038331_01.jpg" alt="photo11">
+    <img src="KakaoTalk_20250701_232248306_01.jpg" alt="photo12">
+  </div>
+
+  <div id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="nav prev" onclick="prevImg()">&#10094;</span>
+    <img id="lb-img" src="" alt="">
+    <span class="nav next" onclick="nextImg()">&#10095;</span>
+  </div>
+
+  <script>
+    const galleryImgs = Array.from(document.querySelectorAll("#gallery img"));
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lb-img");
+    let currentIndex = 0;
+
+    galleryImgs.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        openLightbox(index);
+      });
+    });
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = galleryImgs[currentIndex].src;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = "none";
+    }
+
+    function nextImg() {
+      currentIndex = (currentIndex + 1) % galleryImgs.length;
+      lightboxImg.src = galleryImgs[currentIndex].src;
+    }
+
+    function prevImg() {
+      currentIndex = (currentIndex - 1 + galleryImgs.length) % galleryImgs.length;
+      lightboxImg.src = galleryImgs[currentIndex].src;
+    }
+  </script>
+
+</body>
+</html>
